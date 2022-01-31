@@ -46,6 +46,9 @@ public class PlayerMovement : MonoBehaviour {
     private Vector3 normalVector = Vector3.up;
     private Vector3 wallNormalVector;
 
+    // script grab
+    private ArcadeMachine getScript;
+
     void Awake() {
         rb = GetComponent<Rigidbody>();
     }
@@ -103,9 +106,10 @@ public class PlayerMovement : MonoBehaviour {
 
     private void TestInteract() {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 100, 11)) {
-            // GameObject otherHit = hit.transform.gameObject;
-            // otherHit.onInteract();
+        if (Physics.Raycast(playerCam.transform.position, playerCam.transform.TransformDirection(Vector3.forward), out hit, 5, ~1 << 10)) {
+            // hit.collider.gameObject.onInteract();
+            getScript = hit.collider.gameObject.GetComponent<ArcadeMachine>();
+            getScript.onInteract();
         }
     }
 

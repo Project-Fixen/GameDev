@@ -6,7 +6,11 @@ public class ArcadeMachine : MonoBehaviour
 {
     public GameObject Game;
 
-    void OnInteract() {
+    public void onInteract() {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+        
+        Game.SetActive(true);
         Debug.Log("Hit");
     }
 }
